@@ -1,0 +1,18 @@
+[submodule "jni/curl"]
+	path = jni/curl
+	url = https://github.com/tguillem/android-curl.git
+[submodule "jni/mpd"]
+	path = jni/mpd
+	url = https://github.com/tguillem/android-mpd.git
+[submodule "jni/glib"]
+	path = jni/glib
+	url = https://github.com/tguillem/android-glib.git
+[submodule "jni/yajl"]
+	path = jni/yajl
+	url = https://github.com/tguillem/android-yajl.git
+[submodule "jni/libiconv"]
+	path = jni/libiconv
+	url = https://github.com/tguillem/android-libiconv.git
+[submodule "jni/libav"]
+	path = jni/libav
+	url = https://github.com/tguillem/android-libav.git
