@@ -1,0 +1,5 @@
+Android lib dependencies:
+
+Generate fake android dynamic libraries (only function symbols). Used to get
+android dependencies during build process. True android libs will be linked
+with libs from device (/system/lib/*so).

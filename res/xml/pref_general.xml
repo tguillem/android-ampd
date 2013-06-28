@@ -1,0 +1,44 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+        android:key="run"
+        android:title="@string/pref_title_run"
+        android:defaultValue="false"
+        android:persistent="false"/>
+
+    <CheckBoxPreference
+        android:key="run_on_boot"
+        android:title="@string/pref_title_run_on_boot"
+        android:summary="@string/pref_description_run_on_boot"
+        android:defaultValue="false"
+        android:persistent="true"/>
+
+    <CheckBoxPreference
+        android:key="wakelock"
+        android:title="@string/pref_title_wakelock"
+        android:summary="@string/pref_description_wakelock"
+        android:defaultValue="true"
+        android:persistent="true"/>
+
+    <EditTextPreference
+        android:key="mpd_music_directory"
+        android:title="@string/pref_title_mpd_music_directory"
+        android:selectAllOnFocus="true"
+        android:inputType="textUri"
+        android:capitalize="words"
+        android:singleLine="true"
+        android:maxLines="1"
+        android:persistent="true"/>
+
+    <EditTextPreference
+        android:key="mpd_port"
+        android:title="@string/pref_title_mpd_port"
+        android:selectAllOnFocus="true"
+        android:inputType="number"
+        android:capitalize="words"
+        android:singleLine="true"
+        android:maxLines="1"
+        android:persistent="true"
+        android:defaultValue="@string/mpd_default_port"/>
+
+</PreferenceScreen>

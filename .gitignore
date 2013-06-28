@@ -1,0 +1,14 @@
+bin
+gen
+obj
+*.keystore
+.settings/
+ant.properties
+local.properties
+tests/.classpath
+tests/.project
+tests/project.properties
+libs/armeabi-v7a
+libs/armeabi
+libs/x86
+libs/mips

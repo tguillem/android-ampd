@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">aMPD</string>
+    <string name="notification_title_mpd_running">MPD is running</string>
+    <string name="notification_text_mpd_running">Touch for mpd options.</string>
+    <string name="mpd_port_invalid">Error: The port is invalid (must be between 1024 and 65535, default: 6600)</string>
+    <string name="mpd_dir_invalid">Error: The music directory is invalid.</string>
+
+    <string name="mpd_state_running">MPD is running on background</string>
+    <string name="mpd_state_notrunning">MPD is not running</string>
+
+    <string name="pref_header_general">General</string>
+
+    <string name="pref_title_run">Run MPD</string>
+
+    <string name="pref_title_run_on_boot">Run MPD automatically</string>
+    <string name="pref_description_run_on_boot">MPD Service will be launched on boot</string>
+
+    <string name="pref_title_wakelock">Stay awake</string>
+    <string name="pref_description_wakelock">Prevent device suspend when MPD is running (Wakelock)</string>
+
+    <string name="pref_title_mpd_port">Port</string>
+    <string name="pref_title_mpd_music_directory">Music directory</string>
+
+    <string name="mpd_default_port">6600</string>
+</resources>

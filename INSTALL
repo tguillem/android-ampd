@@ -1,0 +1,24 @@
+                       Android Music Player Daemon (aMPD) - INSTALL
+
+Dependencies
+------------
+
+Android SDK - http://developer.android.com/tools/sdk/tools-notes.html
+
+Android NDK - http://developer.android.com/tools/sdk/ndk/index.html
+
+Compile
+-------
+
+$ ANDROID_NDK=<path_to_android_ndk> ANDROID_SDK=<path_to_android_sdk> make
+
+Install
+-------
+
+$ adb install bin/aMPD-debug.apk
+
+Using MPD
+---------
+
+You can download many different interfaces for MPD at 
+	<http://mpd.wikia.com/wiki/Clients>
