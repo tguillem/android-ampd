@@ -181,7 +181,7 @@ public class MPDService extends Service implements LibMPD.OnErrorListener {
             Notification notification = new Notification.Builder(this)
                     .setContentTitle(getText(R.string.notification_title_mpd_running))
                     .setContentText(getText(R.string.notification_text_mpd_running))
-                    .setSmallIcon(R.drawable.ic_launcher)
+                    .setSmallIcon(R.drawable.ic_notification)
                     .setContentIntent(contentIntent)
                     .getNotification();
 
