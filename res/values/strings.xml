@@ -7,7 +7,8 @@
     <string name="mpd_port_invalid">Error: The port is invalid (must be between 1024 and 65535, default: 6600)</string>
     <string name="mpd_dir_invalid">Error: The music directory is invalid.</string>
 
-    <string name="mpd_state_running">MPD is running on background</string>
+    <string name="mpd_state_running">MPD is running</string>
+    <string name="mpd_state_running_ip">MPD is running on %1$s</string>
     <string name="mpd_state_notrunning">MPD is not running</string>
 
     <string name="pref_header_general">General</string>

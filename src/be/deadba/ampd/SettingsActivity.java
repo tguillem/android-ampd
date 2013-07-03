@@ -45,7 +45,12 @@ import android.preference.TwoStatePreference;
 import android.util.Log;
 
 import java.io.File;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.util.Enumeration;
 import java.util.List;
+
+import org.apache.http.conn.util.InetAddressUtils;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On
@@ -80,6 +85,8 @@ public class SettingsActivity extends PreferenceActivity implements ServiceConne
     private boolean mRunOnBoot = false;
     private boolean mDirValid = false;
     private boolean mPortValid = false;
+    private String mAddress = null;
+    private String mPort = null;
 
     /*
      * The machine state is quite complicated.
@@ -110,6 +117,7 @@ public class SettingsActivity extends PreferenceActivity implements ServiceConne
                         }
                     } catch (RemoteException e) {
                     }
+                    mAddress = getLocalIpAddress();
                     onMPDStatePreferenceChange(false);
                     break;
                 }
@@ -292,6 +300,24 @@ public class SettingsActivity extends PreferenceActivity implements ServiceConne
         }
     }
 
+    private static String getLocalIpAddress(){
+        try {
+            for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {
+                NetworkInterface intf = en.nextElement();
+                for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) {
+                    InetAddress inetAddress = enumIpAddr.nextElement();
+                    String hostAddress = inetAddress.getHostAddress();
+                    if (!inetAddress.isLoopbackAddress() && InetAddressUtils.isIPv4Address(hostAddress)) {
+                        return hostAddress;
+                    }
+                }
+            }
+        } catch (Exception ex) {
+               Log.e(TAG, ex.toString());
+        }
+        return null;
+    }
+
     private boolean onMPDStatePreferenceChange(boolean restart) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -340,7 +366,10 @@ public class SettingsActivity extends PreferenceActivity implements ServiceConne
 
             if (mRun) {
                 mRunPreference.setChecked(true);
-                mRunPreference.setSummary(R.string.mpd_state_running);
+                if (mAddress == null)
+                    mRunPreference.setSummary(R.string.mpd_state_running);
+                else
+                    mRunPreference.setSummary(getString(R.string.mpd_state_running_ip, mAddress+":"+mPort));
             } else {
                 mRunPreference.setChecked(false);
                 mRunPreference.setSummary(R.string.mpd_state_notrunning);
@@ -394,6 +423,8 @@ public class SettingsActivity extends PreferenceActivity implements ServiceConne
             } catch (NumberFormatException e) {
             }
             mPortValid = port >= 1024 && port <= 65535;
+            if (mPortValid)
+                mPort = String.valueOf(port);
             onMPDStatePreferenceChange(true);
         }
         if (preference instanceof ListPreference) {
