@@ -1,17 +1,22 @@
-		       Android Music Player Daemon (aMPD)
+		       android Music Player Daemon (aMPD)
 
-MPD running on Android as a Service (on background). Very useful for all
-TV-stick running on android.
+Music Player Daemon (MPD) running on any Android devices as a Service, on
+background.
 
-An Android Service for playing music of various formats.  Music is played
-through the android's audio output.  The Service stores info about all
-available music, and this info can be easily searched and retrieved. Player
-control, info retrieval, and playlist management can all be managed remotely.
+Simply run aMPD, choose your Music directory and choose if you want to run MPD
+automatically (at device boot). Then play a variety of sound files remotely via
+any MPD clients.
+
+You can use any MPD clients like MPDroid on Android
+(https://play.google.com/store/apps/details?id=com.namelessdev.mpdroid) or any
+other clients on Linux/Windows/Mac (http://www.musicpd.org/clients/).
+
+Connect your client to MPD using the host and port that is shown when you run
+aMPD.
+
+See http://www.musicpd.org/ for more informations about the MPD protocol.
 
 For basic installation information see the INSTALL file.
 
 aMPD is released under the GNU General Public License version 3, which is
 distributed in the COPYING file.
-
-You should have received a copy of the GNU General Public License along with
-this program.  If not, see <http://www.gnu.org/licenses/>.

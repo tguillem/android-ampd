@@ -1,4 +1,4 @@
-                       Android Music Player Daemon (aMPD) - INSTALL
+                       android Music Player Daemon (aMPD) - INSTALL
 
 Dependencies
 ------------
@@ -20,5 +20,5 @@ $ adb install bin/aMPD-debug.apk
 Using MPD
 ---------
 
-You can download many different interfaces for MPD at 
-	<http://mpd.wikia.com/wiki/Clients>
+You can download many different interfaces for MPD at
+<http://mpd.wikia.com/wiki/Clients>
