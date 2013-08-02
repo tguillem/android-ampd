@@ -173,8 +173,8 @@ public class MPDConf {
         entries.put("port", port);
 
         HashMap<String, String> audioOutputBlock = new HashMap<String, String>();
-        audioOutputBlock.put("type", "android");
-        audioOutputBlock.put("name", "Android AudioTrack");
+        audioOutputBlock.put("type", "opensles_android");
+        audioOutputBlock.put("name", "OpenSL ES on Android");
         entries.put("audio_output", audioOutputBlock);
 
         HashMap<String, String> inputBlock = new HashMap<String, String>();
