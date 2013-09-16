@@ -159,7 +159,9 @@ public class MPDConf {
         }
 
         String appPath = ctx.getFilesDir().getAbsolutePath() + "/";
-        entries.put("playlist_directory", appPath+PLAYLISTS_FILE);
+        File f = new File(appPath+PLAYLISTS_FILE);
+        if (f.mkdirs() || f.isDirectory())
+            entries.put("playlist_directory", appPath+PLAYLISTS_FILE);
         entries.put("db_file", appPath+DB_FILE);
         entries.put("sticker_file", appPath+STICKER_FILE);
         entries.put("state_file",appPath+STATE_FILE);
