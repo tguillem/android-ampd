@@ -23,9 +23,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Map;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -50,14 +49,23 @@ public class MPDConf {
     public final static String DEFAULT_MUSIC_DIRECTORY = Environment.
             getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC).getAbsolutePath();
 
-    private interface Entry {
-        public String getString();
-        public HashMap<String, String> getBlock();
+    private static abstract class Entry {
+        private final String key;
+
+        public Entry(String key) {
+            this.key = key;
+        }
+        public String getKey() {
+            return this.key;
+        }
+        public abstract String getString();
+        public abstract Entries getBlock();
     }
 
-    private static class SimpleEntry implements Entry {
+    private static class SimpleEntry extends Entry {
         private final String entry;
-        public SimpleEntry(String entry) {
+        public SimpleEntry(String key, String entry) {
+            super(key);
             this.entry = entry;
         }
         @Override
@@ -65,33 +73,34 @@ public class MPDConf {
             return entry;
         }
         @Override
-        public HashMap<String, String> getBlock() {
+        public Entries getBlock() {
             return null;
         }
     }
 
-    private static class BlockEntry implements Entry {
-        private final HashMap<String, String> entry;
-        public BlockEntry(HashMap<String, String> entry) {
-            this.entry = entry;
+    private static class BlockEntry extends Entry {
+        private final Entries entries;
+        public BlockEntry(String key, Entries entries) {
+            super(key);
+            this.entries = entries;
         }
         @Override
         public String getString() {
             return null;
         }
         @Override
-        public HashMap<String, String> getBlock() {
-            return entry;
+        public Entries getBlock() {
+            return this.entries;
         }
     }
 
-    private static class Entries extends HashMap<String, Entry> {
+    private static class Entries extends ArrayList<Entry> {
         private static final long serialVersionUID = 1L;
         public void put(String key, String entry) {
-            put(key, new MPDConf.SimpleEntry(entry));
+            add(new MPDConf.SimpleEntry(key, entry));
         }
-        public void put(String key, HashMap<String, String> entry) {
-            put(key, new MPDConf.BlockEntry(entry));
+        public void put(String key, Entries entries) {
+            add(new MPDConf.BlockEntry(key, entries));
         }
     }
 
@@ -99,22 +108,23 @@ public class MPDConf {
         boolean success = false;
         StringBuilder conf = new StringBuilder();
 
-        Iterator<Map.Entry<String, MPDConf.Entry>> it = entries.entrySet().iterator();
+        Iterator<MPDConf.Entry> it = entries.iterator();
         while (it.hasNext()) {
-            Map.Entry<String, MPDConf.Entry> pairs = it.next();
-            String key = pairs.getKey();
-            MPDConf.Entry entry = pairs.getValue();
-            conf.append(key);
+            MPDConf.Entry entry = it.next();
+            conf.append(entry.getKey());
             if (entry.getString() != null) {
                 conf.append(" \"").append(entry.getString()).append("\"\n");
             } else {
                 conf.append(" {\n");
-                HashMap<String, String> block = entry.getBlock();
-                Iterator<Map.Entry<String, String>> blockIt = block.entrySet().iterator();
+                Entries blockEntries = entry.getBlock();
+                Iterator<MPDConf.Entry> blockIt = blockEntries.iterator();
                 while (blockIt.hasNext()) {
-                    Map.Entry<String, String> blockPairs = blockIt.next();
-                    conf.append(" ").append(blockPairs.getKey())
-                        .append(" \"").append(blockPairs.getValue()).append("\"\n");
+                    MPDConf.Entry blockEntry = blockIt.next();
+                    if (blockEntry.getString() == null) {
+                        return false;
+                    }
+                    conf.append(" ").append(blockEntry.getKey())
+                        .append(" \"").append(blockEntry.getString()).append("\"\n");
                     blockIt.remove();
                 }
                 conf.append("}\n");
@@ -174,16 +184,16 @@ public class MPDConf {
         entries.put("music_directory", musicDirectory);
         entries.put("port", port);
 
-        HashMap<String, String> audioOutputBlock = new HashMap<String, String>();
+        Entries audioOutputBlock = new Entries();
         audioOutputBlock.put("type", "opensles_android");
         audioOutputBlock.put("name", "OpenSL ES on Android");
         entries.put("audio_output", audioOutputBlock);
 
-        HashMap<String, String> inputBlock = new HashMap<String, String>();
+        Entries inputBlock = new Entries();
         inputBlock.put("plugin", "curl");
         entries.put("input", inputBlock);
 
-        HashMap<String, String> soundcloudBlock = new HashMap<String, String>();
+        Entries soundcloudBlock = new Entries();
         soundcloudBlock.put("name", "soundcloud");
         soundcloudBlock.put("enabled", "true");
         soundcloudBlock.put("apikey", "c4c979fd6f241b5b30431d722af212e8");
