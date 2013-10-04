@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">aMPD</string>
+    <string name="notification_title_mpd_running">MPD 실행 중</string>
+    <string name="notification_text_mpd_running">누르면 mpd 설정.</string>
+    <string name="mpd_port_invalid">오류: 포트가 잘못되었습니다 (반드시 1024와 65535의 사이에 있고, 기본값은: 6600)</string>
+    <string name="mpd_dir_invalid">오류: 음악 디렉터리가 잘못되었습니다.</string>
+
+    <string name="mpd_state_running">MPD 실행 중</string>
+    <string name="mpd_state_running_ip">MPD가 실행 중입니다 %1$s</string>
+    <string name="mpd_state_notrunning">MPD 실행 안 됨</string>
+
+    <string name="pref_header_general">일반</string>
+
+    <string name="pref_title_run">MPD 실행</string>
+
+    <string name="pref_title_run_on_boot">MPD 자동 실행</string>
+    <string name="pref_description_run_on_boot">MPD 서비스가 부팅 시에 시작됩니다</string>
+
+    <string name="pref_title_wakelock">깨어있기</string>
+    <string name="pref_description_wakelock">MPD가 실행 중이면 절전상태로 들어가지 않습니다 (Wakelock)</string>
+
+    <string name="pref_title_mpd_port">포트</string>
+    <string name="pref_title_mpd_music_directory">음악 디렉터리</string>
+</resources>
