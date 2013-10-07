@@ -1,0 +1,11 @@
+<resources>
+    <string-array name="entries_mpd_output">
+        <item>OpenSL ES on Android</item>
+        <item>Android AudioTrack</item>
+    </string-array>
+
+    <string-array name="entryvalues_mpd_output">
+        <item>opensles_android</item>
+        <item>audiotrack</item>
+    </string-array>
+</resources>

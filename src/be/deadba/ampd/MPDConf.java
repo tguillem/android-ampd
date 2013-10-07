@@ -151,6 +151,8 @@ public class MPDConf {
         SharedPreferences sp = getSharedPreferences(ctx);
         String musicDirectory = sp.getString("mpd_music_directory", MPDConf.DEFAULT_MUSIC_DIRECTORY);
         String lastMusicDirectory = sp.getString("last_music_directory", null);
+        boolean useMixer = sp.getBoolean("mpd_mixer", true);
+        String audioOutput = sp.getString("mpd_output", ctx.getString(R.string.mpd_default_output));
         String port = sp.getString("mpd_port", MPDConf.PORT_DEFAULT);
 
         Log.d(TAG, "musicDirectory: " + musicDirectory);
@@ -185,8 +187,10 @@ public class MPDConf {
         entries.put("port", port);
 
         Entries audioOutputBlock = new Entries();
-        audioOutputBlock.put("type", "opensles_android");
-        audioOutputBlock.put("name", "OpenSL ES on Android");
+        audioOutputBlock.put("type", audioOutput);
+        if (!useMixer)
+            audioOutputBlock.put("mixer_type", "none");
+        audioOutputBlock.put("name", audioOutput);
         entries.put("audio_output", audioOutputBlock);
 
         Entries inputBlock = new Entries();

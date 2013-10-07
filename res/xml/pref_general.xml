@@ -41,4 +41,19 @@
         android:persistent="true"
         android:defaultValue="@string/mpd_default_port"/>
 
+    <ListPreference
+        android:key="mpd_output"
+        android:title="@string/pref_title_mpd_output"
+        android:entries="@array/entries_mpd_output"
+        android:entryValues="@array/entryvalues_mpd_output"
+        android:defaultValue="@string/mpd_default_output"
+        android:persistent="true"/>
+
+    <CheckBoxPreference
+        android:key="mpd_mixer"
+        android:title="@string/pref_title_mpd_mixer"
+        android:summary="@string/pref_description_mpd_mixer"
+        android:defaultValue="true"
+        android:persistent="true"/>
+
 </PreferenceScreen>

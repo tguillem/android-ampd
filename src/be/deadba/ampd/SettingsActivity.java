@@ -258,6 +258,8 @@ public class SettingsActivity extends PreferenceActivity implements ServiceConne
         // to reflect the new value, per the Android Design guidelines.
         bindPreferenceSummaryToValue(findPreference("mpd_port"), this);
         bindPreferenceSummaryToValue(findPreference("mpd_music_directory"), this);
+        bindPreferenceSummaryToValue(findPreference("mpd_output"), this);
+        bindPreferenceSummaryToValue(findPreference("mpd_mixer"), this);
         bindPreferenceSummaryToValue(findPreference("wakelock"), this);
         bindPreferenceSummaryToValue(findPreference("run"), this);
         bindPreferenceSummaryToValue(findPreference("run_on_boot"), this);
@@ -426,6 +428,11 @@ public class SettingsActivity extends PreferenceActivity implements ServiceConne
             if (mPortValid)
                 mPort = String.valueOf(port);
             onMPDStatePreferenceChange(true);
+        } else if (key.equals("mpd_mixer")) {
+            onMPDStatePreferenceChange(true);
+            return true;
+        } else if (key.equals("mpd_output")) {
+            onMPDStatePreferenceChange(true);
         }
         if (preference instanceof ListPreference) {
             // For list preferences, look up the correct display value in
@@ -497,6 +504,8 @@ public class SettingsActivity extends PreferenceActivity implements ServiceConne
             // guidelines.
             bindPreferenceSummaryToValue(findPreference("mpd_port"), activity);
             bindPreferenceSummaryToValue(findPreference("mpd_music_directory"), activity);
+            bindPreferenceSummaryToValue(findPreference("mpd_output"), activity);
+            bindPreferenceSummaryToValue(findPreference("mpd_mixer"), activity);
             bindPreferenceSummaryToValue(findPreference("wakelock"), activity);
             bindPreferenceSummaryToValue(findPreference("run"), activity);
             bindPreferenceSummaryToValue(findPreference("run_on_boot"), activity);
