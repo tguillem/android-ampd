@@ -30,6 +30,6 @@
     <string name="pref_title_mpd_mixer">Use mixer</string>
     <string name="pref_description_mpd_mixer">Allow volume control (may deteriorate sound quality)</string>
 
-    <string name="mpd_default_port">6600</string>
-    <string name="mpd_default_output">opensles_android</string>
+    <string name="mpd_default_port" translatable="false">6600</string>
+    <string name="mpd_default_output" translatable="false">opensles_android</string>
 </resources>
