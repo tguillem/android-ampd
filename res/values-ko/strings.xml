@@ -23,4 +23,11 @@
 
     <string name="pref_title_mpd_port">포트</string>
     <string name="pref_title_mpd_music_directory">음악 디렉터리</string>
+
+    <string name="pref_title_mpd_output">오디오출력</string>
+    <string name="pref_description_mpd_output">소리에 문제가 있으면 오디오출력을 바꿉니다</string>
+
+    <string name="pref_title_mpd_mixer">믹서사용</string>
+    <string name="pref_description_mpd_mixer">음량조절을 허용합니다 (음질 열화 가능성)</string>
+
 </resources>
